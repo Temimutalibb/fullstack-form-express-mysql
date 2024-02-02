@@ -1,0 +1,1 @@
+This is a full-stack form, vanilla jascript is used for the client validtion before submiting, Node.js framework Express is used for the client validation before quering the  database(MYSQL) with sql. 
