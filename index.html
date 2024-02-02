@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+    <head>
+        <title>vanilla validation</title>
+        <style>
+            body{
+                margin:0;
+                padding:0;
+                justify-content: center;
+                align-items: center;
+                background-color: #f4f4f4
+            } 
+            form{
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 75%;
+                align-self: center;
+                margin: 0 auto;
+                margin-top: 20px
+            }
+
+            label{
+                display: block;
+                margin-bottom: 8px;
+            }
+            input{
+                width:100%;
+                padding: 8px;
+                margin-bottom: 16px;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius : 4px;
+                color: blue;
+                height: 40px;
+            }
+
+            input:focus {
+                outline-color: green;
+            }
+            input[type ="submit"]{
+                background-color: 4caf50;
+                color: #fff;
+                cursor: pointer;
+        
+            }
+            .confirm{
+                width: 20px;
+                height: 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                outline: none;
+            }
+            .error{
+                color: red;
+            }
+            .login{
+                background-color: green;
+                padding: 10px;
+            }
+            .login a{
+                text-decoration: none;
+                color: white;
+            }
+            #submit{
+                font-size: 20px;
+                background-color:aqua
+            }
+
+        
+         </style>
+    </head>
+    <body>
+        <form id = "myform" onsubmit="return validateForm()" action ="/submit" method ="post">
+            <label for ="email"> Email </label>
+            <input type = "text" name ="email" id ="email">
+            <span class ="error" id = "email-error"></span>
+
+            <label for ="password"> Password </label>
+            <input type = "password" name ="password" id ="password">
+            <span class ="error" id ="password-error"></span>
+
+            <label for ="password2"> Confirm password </label>
+            <input type = "password" name ="password2" id ="password2">
+            <span class ="error" id = "password-error2"></span>
+
+            <input type ="checkbox" name = "confirm" id ="confirm" class="confirm">
+            <span style = "color:blue" id ="confirmspan">I agree to the terms of service and privacy policy</span>
+        
+           <input type ="submit" value ="create account" id ="submit">
+        </form>
+    <script>
+        const confirm  = document.getElementById('confirm');
+        const email    = document.getElementById('email');
+        const password = document.getElementById('password');
+        const password2= document.getElementById('password2');
+        const emailErr = document.getElementById('email-error');
+        const passErr  = document.getElementById('password-error');
+        const confirmSpan = document.getElementById('confirmspan');
+        const myForm   =  document.getElementById('myform');
+        const submit   = document.getElementById('submit');
+
+        function validateForm(){
+
+            if(email.value.length === 0){
+                emailErr.textContent ="Email cannot be empty";
+                return false;
+            }else{emailErr.textContent = ""}
+
+            if(password.value.length === 0){
+                passErr.textContent ="Password is required";
+                return false;
+            }else{passErr.textContent = "";}
+   
+            if(password.value !== password2.value){
+                passErr.textContent = "Password is different"
+                return false;
+            }else{passErr.textContent = "";}
+
+            if(!confirm.checked){
+                confirmSpan.textContent = "you must agreed to the terms to continue";
+                confirmSpan.style.color = "red";
+                return false;
+            }
+    
+            return true;
+         }
+
+    </script>
+
+     </body>
+</html>
